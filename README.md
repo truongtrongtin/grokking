@@ -7,3 +7,4 @@
 - Longest Substring with K Distinct Characters (medium)
 - Fruits into Baskets (medium)
 - No-repeat Substring (hard)
+- Longest Substring with Same Letters after Replacement (hard)
