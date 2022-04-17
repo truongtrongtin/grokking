@@ -8,3 +8,4 @@
 - Fruits into Baskets (medium)
 - No-repeat Substring (hard)
 - Longest Substring with Same Letters after Replacement (hard)
+- Longest Subarray with Ones after Replacement (hard)
