@@ -1,7 +1,7 @@
 /*
-Given a string and a pattern, find out if the string contains any permutation of the pattern.
+Given a string and a pattern, find all anagrams of the pattern in the given string.
 
-Permutation is defined as the re-arranging of the characters of the string. For example, “abc” has the following six permutations:
+Anagram is actually a Permutation of a string. For example, “abc” has the following six anagrams:
 
 abc
 acb
@@ -9,27 +9,17 @@ bac
 bca
 cab
 cba
-If a string has ‘n’ distinct characters it will have n!n! permutations.
+Write a function to return a list of starting indices of the anagrams of the pattern in the given string.
 
 Example 1:
-Input: String="oidbcaf", Pattern="abc"
-Output: true
-Explanation: The string contains "bca" which is a permutation of the given pattern.
+Input: String="ppqp", Pattern="pq"
+Output: [1, 2]
+Explanation: The two anagrams of the pattern in the given string are "pq" and "qp".
 
 Example 2:
-Input: String="odicf", Pattern="dc"
-Output: false
-Explanation: No permutation of the pattern is present in the given string as a substring.
-
-Example 3:
-Input: String="bcdxabcdy", Pattern="bcdyabcdx"
-Output: true
-Explanation: Both the string and the pattern are a permutation of each other.
-
-Example 4:
-Input: String="aaacb", Pattern="abc"
-Output: true
-Explanation: The string contains "acb" which is a permutation of the given pattern.
+Input: String="abbcabc", Pattern="abc"
+Output: [2, 3, 4]
+Explanation: The three anagrams of the pattern in the given string are "bca", "cab", and "abc".
 */
 
 function isPermutation(str, pattern) {
@@ -48,18 +38,22 @@ function isPermutation(str, pattern) {
   return true;
 }
 
-function findPermutation(str, pattern) {
+function findStringAnagrams(str, pattern) {
+  const result = [];
   if (str.length < pattern.length) return false;
   for (let start = 0, end = pattern.length; end <= str.length; end++, start++) {
-    if (isPermutation(str.substring(start, end), pattern)) return true;
+    if (isPermutation(str.substring(start, end), pattern)) {
+      result.push(start);
+    }
   }
-  return false;
+  return result;
 }
 // Time Complexity O(N*M) with M is pattern length
 // Space Complexity O(26)
 
-function findPermutation(str, pattern) {
-  let start = 0,
+function findStringAnagrams(str, pattern) {
+  let result = [],
+    start = 0,
     matched = 0,
     charFrequency = {};
   for (const char of pattern) {
@@ -73,7 +67,9 @@ function findPermutation(str, pattern) {
       if (charFrequency[endChar] === 0) matched++;
     }
 
-    if (matched === Object.keys(charFrequency).length) return true;
+    if (matched === Object.keys(charFrequency).length) {
+      result.push(start);
+    }
 
     if (end >= pattern.length - 1) {
       const startChar = str[start];
@@ -89,7 +85,5 @@ function findPermutation(str, pattern) {
 // Time Complexity O(N+M) with M is pattern length
 // Space Complexity O(M)
 
-console.log(findPermutation("oidbcaf", "abc"));
-console.log(findPermutation("odicf", "dc"));
-console.log(findPermutation("bcdxabcdy", "bcdyabcdx"));
-console.log(findPermutation("aaacb", "abc"));
+console.log(findPermutation("ppqp", "pq"));
+console.log(findPermutation("abbcabc", "abc"));
