@@ -31,7 +31,7 @@ function nonRepeatSubstring(str) {
   let maxLength = 0;
   for (let start = 0; start < str.length; start++) {
     for (let end = start; end < str.length; end++) {
-      if (!hasDuplicate(str.substring(start, end))) {
+      if (!hasDuplicate(str.substring(start, end + 1))) {
         maxLength = Math.max(maxLength, end - start + 1);
       }
     }
