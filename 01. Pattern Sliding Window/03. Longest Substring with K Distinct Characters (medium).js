@@ -28,6 +28,9 @@ function findLength(str, k) {
       if (seen.size === k) {
         maxLength = Math.max(maxLength, end - start + 1);
       }
+      if (seen.size > k) {
+        break;
+      }
     }
   }
   return maxLength;
@@ -35,24 +38,24 @@ function findLength(str, k) {
 // Time Complexity O(N^2)
 // Space Complexity O(k)
 
-function findLength(str, k) {
-  let maxLength = 0,
-    start = 0,
-    charFrequency = new Map();
-  for (let end = 0; end < str.length; end++) {
-    const endChar = str[end];
-    if (!charFrequency.has(endChar)) charFrequency.set(endChar, 0);
-    charFrequency.set(endChar, charFrequency.get(endChar) + 1);
-    while (charFrequency.size > k) {
-      const startChar = str[start];
-      charFrequency.set(startChar, charFrequency.get(startChar) - 1);
-      if (charFrequency.get(startChar) === 0) charFrequency.delete(startChar);
-      start++;
-    }
-    maxLength = Math.max(maxLength, end - start + 1);
-  }
-  return maxLength;
-}
+// function findLength(str, k) {
+//   let maxLength = 0,
+//     start = 0,
+//     charFrequency = new Map();
+//   for (let end = 0; end < str.length; end++) {
+//     const endChar = str[end];
+//     if (!charFrequency.has(endChar)) charFrequency.set(endChar, 0);
+//     charFrequency.set(endChar, charFrequency.get(endChar) + 1);
+//     while (charFrequency.size > k) {
+//       const startChar = str[start];
+//       charFrequency.set(startChar, charFrequency.get(startChar) - 1);
+//       if (charFrequency.get(startChar) === 0) charFrequency.delete(startChar);
+//       start++;
+//     }
+//     maxLength = Math.max(maxLength, end - start + 1);
+//   }
+//   return maxLength;
+// }
 // Time Complexity O(N)
 // Space Complexity O(k)
 
