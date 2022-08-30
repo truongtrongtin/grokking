@@ -80,10 +80,10 @@ function findStringAnagrams(str, pattern) {
       start++;
     }
   }
-  return false;
+  return result;
 }
 // Time Complexity O(N+M) with M is pattern length
 // Space Complexity O(M)
 
-console.log(findPermutation("ppqp", "pq"));
-console.log(findPermutation("abbcabc", "abc"));
+console.log(findStringAnagrams("ppqp", "pq"));
+console.log(findStringAnagrams("abbcabc", "abc"));
